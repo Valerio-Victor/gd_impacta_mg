@@ -24,9 +24,7 @@ agregados <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
 
 producao_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
                                        sheet = 'Produção Setorial') %>% 
-  tidyr::pivot_longer(cols = c(mg, resto),
-                      names_to = 'local',
-                      values_to = 'valor') %>% 
+  dplyr::rename('valor' = mg) %>% 
   dplyr::mutate(ref = dplyr::case_when(
     variavel == 'Agropecuária' ~ 1,
     variavel == 'Indústria' ~ 2,
@@ -34,21 +32,7 @@ producao_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
     variavel == 'Extrativa' ~ 4,
     variavel == 'Comércio' ~ 5,
     variavel == 'Transporte' ~ 6)) %>% 
-  dplyr::arrange(local, cenario)
-
-investimento_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
-                                           sheet = 'Investimento Setorial') %>% 
-  tidyr::pivot_longer(cols = c(mg, resto),
-                      names_to = 'local',
-                      values_to = 'valor') %>% 
-  dplyr::mutate(ref = dplyr::case_when(
-    variavel == 'Agropecuária' ~ 1,
-    variavel == 'Indústria' ~ 2,
-    variavel == 'Serviço' ~ 3,
-    variavel == 'Extrativa' ~ 4,
-    variavel == 'Comércio' ~ 5,
-    variavel == 'Transporte' ~ 6)) %>% 
-  dplyr::arrange(local, cenario)
+  dplyr::arrange(cenario)
 
 azul <- '#1F5A7A'
 verde <- '#00B5A1'
@@ -343,9 +327,11 @@ title = 'Impacto Econômico',
 nav_panel(
 title = 'Resultado Agregado',
 card(
-  card_header('IMPACTO ECONÔMICO ACUMULADO (2015-2025)',
+  fill = FALSE,
+  card_header('IMPACTO ECONÔMICO ACUMULADO EM MINAS GERAIS (2015-2025)',
               style = "background-color: #1F5A7A; color: white;"),
   card_body(
+    fillable = FALSE,
     layout_columns(
       col_widths = c(6,6),
       gap = '1rem',
@@ -353,6 +339,20 @@ card(
       plotlyOutput("graf31_2"),
       plotlyOutput("graf31_3"),
       plotlyOutput("graf31_4")
+    )
+  )
+),
+card(
+  fill = FALSE,
+  card_header('IMPACTO ECONÔMICO ACUMULADO NOS DEMAIS ESTADOS (2015-2025)',
+              style = "background-color: #1F5A7A; color: white;"),
+  card_body(
+    fillable = FALSE,
+    layout_columns(
+      col_widths = c(6,6),
+      gap = '1rem',
+      plotlyOutput("graf31_5"),
+      plotlyOutput("graf31_6")
     )
   )
 )
@@ -745,7 +745,10 @@ output$graf31_1 <- renderPlotly({
                    y = variavel,
                    fill = cenario,
                    text = paste0('Variável: ', variavel,
-                                 '<br>Valor: ', valor,
+                                 '<br>Valor: ', scales::percent(
+                                   valor,
+                                   decimal.mark = ',',
+                                   accuracy = 0.01),
                                  '<br>Cenário: ', cenario)),
                position = 'dodge',
                width = 0.7) +
@@ -770,7 +773,10 @@ output$graf31_2 <- renderPlotly({
                    y = variavel,
                    fill = cenario,
                    text = paste0('Variável: ', variavel,
-                                 '<br>Valor: ', valor,
+                                 '<br>Valor: ', scales::percent(
+                                   valor,
+                                   decimal.mark = ',',
+                                   accuracy = 0.01),
                                  '<br>Cenário: ', cenario)),
                position = 'dodge',
                width = 0.7*3/5) +
@@ -788,18 +794,22 @@ output$graf31_2 <- renderPlotly({
 output$graf31_3 <- renderPlotly({
   plotly::ggplotly(
     producao_setorial %>%
-      dplyr::filter(local == 'mg' & ref <= 5) %>%
+      dplyr::filter(ref <= 5) %>%
       dplyr::mutate(variavel = forcats::fct_reorder(variavel, dplyr::desc(ref))) %>%
       ggplot() +
-      geom_col(aes(x = valor/100,
+      geom_col(aes(x = valor,
                    y = variavel,
                    fill = cenario,
                    text = paste0('Variável: ', variavel,
-                                 '<br>Valor: ', valor,
+                                 '<br>Valor: ', scales::percent(
+                                   valor,
+                                   decimal.mark = ',',
+                                   accuracy = 0.01),
                                  '<br>Cenário: ', cenario)),
                position = 'dodge',
                width = 0.7) +
-      scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
+      scale_x_continuous(labels = scales::percent_format(decimal.mark = ',',
+                                                         accuracy = 0.1)) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Produção Setorial',
            x = 'Variação',
@@ -810,23 +820,58 @@ output$graf31_3 <- renderPlotly({
     tooltip = 'text')
 })
 
-output$graf31_4 <- renderPlotly({
+# output$graf31_4 <- renderPlotly({
+# 
+# })
+
+output$graf31_5 <- renderPlotly({
   plotly::ggplotly(
-    investimento_setorial %>%
-      dplyr::filter(local == 'mg' & ref <= 5) %>%
+    agregados %>%
+      dplyr::filter(local == 'resto' & ref <= 5) %>%
       dplyr::mutate(variavel = forcats::fct_reorder(variavel, dplyr::desc(ref))) %>%
       ggplot() +
-      geom_col(aes(x = valor,
+      geom_col(aes(x = valor/100,
                    y = variavel,
                    fill = cenario,
                    text = paste0('Variável: ', variavel,
-                                 '<br>Valor: ', valor,
+                                 '<br>Valor: ', scales::percent(
+                                   valor,
+                                   decimal.mark = ',',
+                                   accuracy = 0.01),
                                  '<br>Cenário: ', cenario)),
                position = 'dodge',
                width = 0.7) +
       scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
-      labs(title = 'Investimento Setorial',
+      labs(title = 'Atividade Econômica e Demanda Agregada',
+           x = 'Variação',
+           y = '',
+           fill = '') +
+      theme_light() +
+      theme(legend.position = 'bottom'),
+    tooltip = 'text')
+})
+
+output$graf31_6 <- renderPlotly({
+  plotly::ggplotly(
+    agregados %>%
+      dplyr::filter(local == 'mg' & ref >= 6) %>%
+      dplyr::mutate(variavel = forcats::fct_reorder(variavel, dplyr::desc(ref))) %>%
+      ggplot() +
+      geom_col(aes(x = valor/100,
+                   y = variavel,
+                   fill = cenario,
+                   text = paste0('Variável: ', variavel,
+                                 '<br>Valor: ', scales::percent(
+                                   valor,
+                                   decimal.mark = ',',
+                                   accuracy = 0.01),
+                                 '<br>Cenário: ', cenario)),
+               position = 'dodge',
+               width = 0.7*3/5) +
+      scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
+      scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
+      labs(title = 'Trabalho e Preços',
            x = 'Variação',
            y = '',
            fill = '') +
