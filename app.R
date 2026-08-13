@@ -49,7 +49,7 @@ icms_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
 tradutor <- readxl::read_xlsx(path = './dados/tradutor_gempack.xlsx',
                               sheet = 'final')
 
-microrregioes <- geobr::read_micro_region(year = 2018)
+micro_mg <- readRDS(file = './dados/geobr.rds')
 
 agregados_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
                                      sheet = 'Agregados - Micro') %>% 
@@ -60,18 +60,32 @@ agregados_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
   dplyr::mutate(micro = geobr) %>% 
   dplyr::select(-geobr)
 
+agregados_micro <- micro_mg %>% 
+    dplyr::full_join(agregados_micro, by = c('name_micro' = 'micro'))
+
 producao_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
                                     sheet = 'Produção - Micro') %>% 
   tidyr::pivot_longer(cols = -c(cenario,variavel),
                       names_to = 'micro',
-                      values_to = 'valor') 
-  
+                      values_to = 'valor') %>% 
+  dplyr::full_join(tradutor, by = c('micro' = 'resultado')) %>% 
+  dplyr::mutate(micro = geobr) %>% 
+  dplyr::select(-geobr)
+
+producao_micro <- micro_mg %>% 
+  dplyr::full_join(producao_micro, by = c('name_micro' = 'micro'))
+
 investimento_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
                                         sheet = 'Investimento - Micro') %>% 
   tidyr::pivot_longer(cols = -c(cenario,variavel),
                       names_to = 'micro',
-                      values_to = 'valor') 
-  
+                      values_to = 'valor') %>% 
+  dplyr::full_join(tradutor, by = c('micro' = 'resultado')) %>% 
+  dplyr::mutate(micro = geobr) %>% 
+  dplyr::select(-geobr) 
+
+investimento_micro <- micro_mg %>% 
+  dplyr::full_join(investimento_micro, by = c('name_micro' = 'micro'))
 
 azul <- '#1F5A7A'
 verde <- '#00B5A1'
