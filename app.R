@@ -34,6 +34,18 @@ producao_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
     variavel == 'Transporte' ~ 6)) %>% 
   dplyr::arrange(cenario)
 
+icms_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
+                                   sheet = 'ICMS Setorial') %>% 
+  dplyr::rename('valor' = mg) %>% 
+  dplyr::mutate(ref = dplyr::case_when(
+    variavel == 'Agropecuária' ~ 1,
+    variavel == 'Indústria' ~ 2,
+    variavel == 'Serviço' ~ 3,
+    variavel == 'Extrativa' ~ 4,
+    variavel == 'Comércio' ~ 5,
+    variavel == 'Transporte' ~ 6)) %>% 
+  dplyr::arrange(cenario)
+
 azul <- '#1F5A7A'
 verde <- '#00B5A1'
 
@@ -755,7 +767,7 @@ output$graf31_1 <- renderPlotly({
       scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Atividade Econômica e Demanda Agregada',
-           x = 'Variação',
+           x = '',
            y = '',
            fill = '') +
       theme_light() +
@@ -783,7 +795,7 @@ output$graf31_2 <- renderPlotly({
       scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Trabalho e Preços',
-           x = 'Variação',
+           x = '',
            y = '',
            fill = '') +
       theme_light() +
@@ -794,7 +806,6 @@ output$graf31_2 <- renderPlotly({
 output$graf31_3 <- renderPlotly({
   plotly::ggplotly(
     producao_setorial %>%
-      dplyr::filter(ref <= 5) %>%
       dplyr::mutate(variavel = forcats::fct_reorder(variavel, dplyr::desc(ref))) %>%
       ggplot() +
       geom_col(aes(x = valor,
@@ -812,7 +823,7 @@ output$graf31_3 <- renderPlotly({
                                                          accuracy = 0.1)) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Produção Setorial',
-           x = 'Variação',
+           x = '',
            y = '',
            fill = '') +
       theme_light() +
@@ -820,9 +831,37 @@ output$graf31_3 <- renderPlotly({
     tooltip = 'text')
 })
 
-# output$graf31_4 <- renderPlotly({
-# 
-# })
+output$graf31_4 <- renderPlotly({
+  plotly::ggplotly(
+    icms_setorial %>%
+      dplyr::mutate(variavel = forcats::fct_reorder(variavel, dplyr::desc(ref))) %>%
+      ggplot() +
+      geom_col(aes(x = valor,
+                   y = variavel,
+                   fill = cenario,
+                   text = paste0('Variável: ', variavel,
+                                 '<br>Valor: ', scales::dollar(
+                                   valor,
+                                   big.mark = '.',
+                                   decimal.mark = ',',
+                                   prefix = 'R$',
+                                   accuracy = 1), 'Milhões',
+                                 '<br>Cenário: ', cenario)),
+               position = 'dodge',
+               width = 0.7) +
+      scale_x_continuous(labels = scales::dollar_format(big.mark = '.',
+                                                        decimal.mark = ',',
+                                                        prefix = 'R$')) +
+      scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
+      labs(title = 'Arrecadação de ICMS Setorial (Em Milhões)',
+           x = '',
+           y = '',
+           fill = '') +
+      theme_light() +
+      theme(legend.position = 'bottom'),
+    tooltip = 'text')
+
+})
 
 output$graf31_5 <- renderPlotly({
   plotly::ggplotly(
@@ -844,7 +883,7 @@ output$graf31_5 <- renderPlotly({
       scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Atividade Econômica e Demanda Agregada',
-           x = 'Variação',
+           x = '',
            y = '',
            fill = '') +
       theme_light() +
@@ -872,7 +911,7 @@ output$graf31_6 <- renderPlotly({
       scale_x_continuous(labels = scales::percent_format(decimal.mark = ',')) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Trabalho e Preços',
-           x = 'Variação',
+           x = '',
            y = '',
            fill = '') +
       theme_light() +
