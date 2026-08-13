@@ -46,6 +46,33 @@ icms_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
     variavel == 'Transporte' ~ 6)) %>% 
   dplyr::arrange(cenario)
 
+tradutor <- readxl::read_xlsx(path = './dados/tradutor_gempack.xlsx',
+                              sheet = 'final')
+
+microrregioes <- geobr::read_micro_region(year = 2018)
+
+agregados_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+                                     sheet = 'Agregados - Micro') %>% 
+  tidyr::pivot_longer(cols = -c(cenario,variavel),
+                      names_to = 'micro',
+                      values_to = 'valor') %>% 
+  dplyr::full_join(tradutor, by = c('micro' = 'resultado')) %>% 
+  dplyr::mutate(micro = geobr) %>% 
+  dplyr::select(-geobr)
+
+producao_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+                                    sheet = 'Produção - Micro') %>% 
+  tidyr::pivot_longer(cols = -c(cenario,variavel),
+                      names_to = 'micro',
+                      values_to = 'valor') 
+  
+investimento_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+                                        sheet = 'Investimento - Micro') %>% 
+  tidyr::pivot_longer(cols = -c(cenario,variavel),
+                      names_to = 'micro',
+                      values_to = 'valor') 
+  
+
 azul <- '#1F5A7A'
 verde <- '#00B5A1'
 
@@ -329,13 +356,6 @@ nav_menu(
 nav_menu(
 title = 'Impacto Econômico',
 
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
 nav_panel(
 title = 'Resultado Agregado',
 card(
@@ -370,375 +390,115 @@ card(
 )
 ),
 
-
-
-    
-    nav_panel(
-      title = "Microrregiões",
-      
-      layout_sidebar(
-        sidebar = sidebar(
-          title = "Filtros",
-          
-          selectInput(
-            inputId = "cenario_microrregiao",
-            label = "Cenário",
-            choices = c(
-              "Cenário real",
-              "Cenário hipotético",
-              "Diferença entre cenários"
-            )
-          ),
-          
-          selectInput(
-            inputId = "indicador_microrregiao",
-            label = "Indicador",
-            choices = c(
-              "Consumo das Famílias",
-              "Investimento Real",
-              "Consumo do Governo",
-              "Volume de Exportações",
-              "Volume de Importação",
-              "PIB Real",
-              "Emprego Agregado",
-              "Salário Real Médio",
-              "Estoque de Capital Médio",
-              "Deflator do PIB",
-              "Índice de Preços"
-            )
-          ),
-          
-          selectInput(
-            inputId = "microrregiao_selecionada",
-            label = "Microrregião",
-            choices = NULL
-          )
-        ),
-        
-        layout_columns(
-          col_widths = c(8, 4),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("Distribuição espacial dos impactos"),
-            
-            card_body(
-              plotOutput(
-                outputId = "mapa_microrregioes",
-                height = "600px"
-              )
-            )
-          ),
-          
-          card(
-            card_header("Microrregião selecionada"),
-            
-            card_body(
-              uiOutput("resumo_microrregiao")
-            )
-          )
-        ),
-        
-        card(
-          full_screen = TRUE,
-          
-          card_header("Impactos por microrregião"),
-          
-          card_body(
-            plotOutput(
-              outputId = "grafico_microrregioes",
-              height = "650px"
-            )
-          )
-        )
-      )
-    ),
-    
-    nav_panel(
-      title = "Rankings regionais",
-      
-      layout_sidebar(
-        sidebar = sidebar(
-          title = "Filtros",
-          
-          selectInput(
-            inputId = "variavel_ranking",
-            label = "Indicador",
-            choices = c(
-              "PIB Real",
-              "Consumo das Famílias"
-            )
-          ),
-          
-          selectInput(
-            inputId = "cenario_ranking",
-            label = "Cenário",
-            choices = c(
-              "Cenário real",
-              "Cenário hipotético",
-              "Comparação entre cenários"
-            )
-          ),
-          
-          sliderInput(
-            inputId = "quantidade_microrregioes",
-            label = "Quantidade de microrregiões",
-            min = 5,
-            max = 66,
-            value = 15,
-            step = 1
-          ),
-          
-          radioButtons(
-            inputId = "ordenacao_ranking",
-            label = "Ordenação",
-            choices = c(
-              "Maiores impactos",
-              "Menores impactos"
-            )
-          )
-        ),
-        
-        layout_column_wrap(
-          width = 1 / 3,
-          
-          value_box(
-            title = "Maior impacto",
-            value = textOutput("maior_impacto_ranking")
-          ),
-          
-          value_box(
-            title = "Impacto mediano",
-            value = textOutput("mediana_impacto_ranking")
-          ),
-          
-          value_box(
-            title = "Menor impacto",
-            value = textOutput("menor_impacto_ranking")
-          )
-        ),
-        
-        layout_columns(
-          col_widths = c(7, 5),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("Ranking das microrregiões"),
-            
-            card_body(
-              plotOutput(
-                outputId = "grafico_ranking",
-                height = "650px"
-              )
-            )
-          ),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("PIB real e consumo das famílias"),
-            
-            card_body(
-              plotOutput(
-                outputId = "grafico_pib_consumo",
-                height = "650px"
-              )
-            )
-          )
-        )
-      )
-    ),
-    
-    nav_panel(
-      title = "Setores econômicos",
-      
-      layout_sidebar(
-        sidebar = sidebar(
-          title = "Filtros",
-          
-          radioButtons(
-            inputId = "tipo_impacto_setorial",
-            label = "Tipo de impacto",
-            choices = c(
-              "Produção industrial",
-              "Investimento industrial"
-            )
-          ),
-          
-          selectInput(
-            inputId = "cenario_setorial",
-            label = "Cenário",
-            choices = c(
-              "Cenário real",
-              "Cenário hipotético",
-              "Diferença entre cenários"
-            )
-          ),
-          
-          selectInput(
-            inputId = "setor_economico",
-            label = "Setor econômico",
-            choices = NULL
-          ),
-          
-          selectInput(
-            inputId = "microrregiao_setorial",
-            label = "Microrregião",
-            choices = NULL
-          )
-        ),
-        
-        layout_columns(
-          col_widths = c(7, 5),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("Distribuição espacial do impacto setorial"),
-            
-            card_body(
-              plotOutput(
-                outputId = "mapa_setorial",
-                height = "600px"
-              )
-            )
-          ),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("Resultados por setor econômico"),
-            
-            card_body(
-              plotOutput(
-                outputId = "grafico_setorial",
-                height = "600px"
-              )
-            )
-          )
-        ),
-        
-        card(
-          full_screen = TRUE,
-          
-          card_header("Setores econômicos e microrregiões"),
-          
-          card_body(
-            plotOutput(
-              outputId = "mapa_calor_setorial",
-              height = "700px"
-            )
-          )
-        )
-      )
-    ),
-    
-    nav_panel(
-      title = "Valores monetários",
-      
-      layout_sidebar(
-        sidebar = sidebar(
-          title = "Filtros",
-          
-          selectInput(
-            inputId = "cenario_monetario",
-            label = "Cenário",
-            choices = c(
-              "Cenário real",
-              "Cenário hipotético",
-              "Diferença entre cenários"
-            )
-          ),
-          
-          selectInput(
-            inputId = "componente_monetario",
-            label = "Componente",
-            choices = c(
-              "Impacto total",
-              "Consumo das famílias",
-              "Investimento",
-              "Consumo do governo",
-              "Estoques",
-              "Exportações"
-            )
-          ),
-          
-          selectInput(
-            inputId = "microrregiao_monetaria",
-            label = "Microrregião",
-            choices = NULL
-          )
-        ),
-        
-        layout_column_wrap(
-          width = 1 / 3,
-          
-          value_box(
-            title = "Impacto total",
-            value = textOutput("impacto_total_monetario"),
-            showcase = tags$span("R$ milhões")
-          ),
-          
-          value_box(
-            title = "Maior impacto regional",
-            value = textOutput("maior_impacto_monetario")
-          ),
-          
-          value_box(
-            title = "Participação regional",
-            value = textOutput("participacao_regional_monetaria")
-          )
-        ),
-        
-        layout_columns(
-          col_widths = c(7, 5),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("Impacto monetário por microrregião"),
-            
-            card_body(
-              plotOutput(
-                outputId = "mapa_monetario",
-                height = "600px"
-              )
-            )
-          ),
-          
-          card(
-            full_screen = TRUE,
-            
-            card_header("Composição do impacto monetário"),
-            
-            card_body(
-              plotOutput(
-                outputId = "grafico_composicao_monetaria",
-                height = "600px"
-              )
-            )
-          )
-        ),
-        
-        card(
-          full_screen = TRUE,
-          
-          card_header(
-            "Impactos acumulados entre 2015 e 2025 — milhões de reais"
-          ),
-          
-          card_body(
-            plotOutput(
-              outputId = "grafico_monetario_microrregioes",
-              height = "650px"
-            )
-          )
-        )
-      )
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+nav_panel(
+  title = 'Distribuição Espacial',
+  
+layout_sidebar(
+sidebar = sidebar(
+  title = 'Filtros',
+  
+  selectInput(
+    inputId = 'cenario_microrregiao',
+    label = 'Cenário',
+    choices = c(
+      'Cenário Real',
+      'Cenário Hipotético',
+      'Diferença'
+    )
+  ),
+  
+  selectInput(
+    inputId = 'indicador_microrregiao',
+    label = 'Indicador Agregado',
+    choices = c(
+      'Consumo das Famílias',
+      'Investimento Real',
+      'Volume de Exportações',
+      'Volume de Importações',
+      'PIB Real',
+      'Emprego Agregado',
+      'Salário Real Médio',
+      'Índice de Preços'
+    )
+  ),
+  
+  selectInput(
+    inputId = 'setor_microrregiao',
+    label = 'Setor Econômico',
+    choices = c(
+      'Agropecuária',
+      'Extrativa',
+      'Indústria',
+      'Serviço',
+      'Comércio',
+      'Transporte'
+    )
+  ),
+  
+  selectInput(
+    inputId = 'selecao_microrregiao',
+    label = 'Microrregião',
+    choices = c(
+      'Itajubá',
+      'Belo Horizonte'
     )
   )
+),
+card(
+  fill = FALSE,
+  card_header('DISTRIBUIÇÃO ESPACIAL DO IMPACTO ACUMULADO (2015-2025)',
+              style = "background-color: #1F5A7A; color: white;"),
+  card_body(
+    fillable = FALSE,
+    layout_columns(
+      col_widths = c(4,4,4),
+      gap = '1rem',
+      plotlyOutput("graf32_1"),
+      plotlyOutput("graf32_2"),
+      plotlyOutput("graf32_3")
+    )
+  )
+),
+card(
+  fill = FALSE,
+  card_header('IMPACTO ACUMULADO NA MICRORREGIÃO SELECIONADA (2015-2025)',
+              style = "background-color: #1F5A7A; color: white;"),
+  card_body(
+    fillable = FALSE,
+    layout_columns(
+      col_widths = c(6,6),
+      gap = '1rem',
+      plotlyOutput("graf32_4"),
+      plotlyOutput("graf32_5"),
+      plotlyOutput("graf32_6"),
+      plotlyOutput("graf32_7")
+    )
+  )
+)
+
+
+
+
+
+
+
+)
+),
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+)
 )
 
 
@@ -845,7 +605,7 @@ output$graf31_4 <- renderPlotly({
                                    big.mark = '.',
                                    decimal.mark = ',',
                                    prefix = 'R$',
-                                   accuracy = 1), 'Milhões',
+                                   accuracy = 1), ' Milhões',
                                  '<br>Cenário: ', cenario)),
                position = 'dodge',
                width = 0.7) +
