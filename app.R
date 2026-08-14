@@ -165,56 +165,20 @@ theme = bs_theme(
 # PROJETO ---------------------------------------------------------------
 nav_menu(
   title = "Projeto",
-  
-  nav_panel(
-    title = "Sobre o projeto",
-    
-    layout_sidebar(
-      sidebar = sidebar(
-        title = "Projeto",
-        
-        p(
-          "Informações gerais sobre o projeto, objetivos, metodologia e",
-          "contextualização da geração distribuída em Minas Gerais."
-        )
-      ),
-      
-      card(
-        full_screen = TRUE,
-        
-        card_header(
-          "Impactos econômicos da geração distribuída em Minas Gerais"
-        ),
-        
-        card_body(
-          h4("Sobre a aplicação"),
-          
-          p(
-            "Esta aplicação apresenta os impactos econômicos acumulados",
-            "da geração distribuída em Minas Gerais entre 2015 e 2025."
-          ),
-          
-          p(
-            "Os resultados são apresentados para dois cenários:"
-          ),
-          
-          tags$ul(
-            tags$li(
-              strong("Cenário real: "),
-              "considera as alterações regulatórias ocorridas no período."
-            ),
-            
-            tags$li(
-              strong("Cenário hipotético: "),
-              "considera a ausência das alterações introduzidas pela",
-              "Lei nº 14.300."
-            )
-          )
-        )
-      )
-    )
-  ),
-  
+
+nav_panel(
+title = 'Sobre o APP',
+card(
+  fill = FALSE,
+  card_header('PROJETO DE PESQUISA',
+              style = "background-color: #1F5A7A; color: white;"),
+  card_body(
+    fillable = FALSE,
+    shiny::includeHTML("guia_info_projeto.html")
+  )
+)
+),
+
 nav_panel(
 title = 'Pesquisadores',
 card(

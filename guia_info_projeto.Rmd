@@ -1,0 +1,51 @@
+---
+title: ""
+output:
+  html_document:
+    self_contained: true
+    theme: null
+date: ""
+---
+
+<div style="text-align: justify">
+
+
+O **GD Impacta MG** apresenta os principais resultados do projeto de pesquisa **"Impactos Econômicos da Geração Solar Fotovoltaica Distribuída no Estado de Minas Gerais: Uma Abordagem de Modelagem Inter-Regional de Equilíbrio Geral Computável"**, desenvolvido no âmbito do **Edital nº 007/2021 – Redes de Pesquisa Científica e Desenvolvimento Tecnológico com Foco em Demandas Estratégicas**, com financiamento da **Fundação de Amparo à Pesquisa do Estado de Minas Gerais (FAPEMIG)**, apoio da **Secretaria de Estado de Desenvolvimento Econômico de Minas Gerais (SEDE-MG)**, por meio de Acordo de Cooperação Técnica, e gestão da **Fundação de Apoio ao Ensino, Pesquisa e Extensão de Itajubá (FAPEPE)**.
+
+A pesquisa foi desenvolvida em rede pela **Universidade Federal de Itajubá (UNIFEI)**, instituição proponente, **Universidade Federal de Lavras (UFLA)**, **Universidade Federal de Minas Gerais (UFMG)** e **Universidade Federal de Juiz de Fora (UFJF)**.
+
+#### CONTEXTO
+
+O Brasil possui um dos maiores potenciais de geração de energia solar do mundo. Entretanto, a expansão da geração fotovoltaica distribuída ganhou impulso após a publicação da **Resolução Normativa ANEEL nº 482/2012**, que estabeleceu as regras para micro e minigeração distribuída. Desde então, a tecnologia apresentou crescimento expressivo, especialmente em Minas Gerais, estado que se consolidou como uma das principais referências nacionais em número de instalações.
+
+Posteriormente, a promulgação da **Lei nº 14.300/2022** alterou significativamente o marco regulatório da geração distribuída, modificando, entre outros aspectos, as regras de compensação da energia elétrica e influenciando a dinâmica de expansão do setor. Nesse contexto, o projeto teve como objetivo mensurar os impactos econômicos da geração solar fotovoltaica distribuída em Minas Gerais, considerando os investimentos realizados e as alterações regulatórias ocorridas no período analisado.
+
+#### MODELAGEM ECONÔMICA
+
+Para mensurar esses efeitos, foi desenvolvida uma **modelagem inter-regional de equilíbrio geral computável**, capaz de representar as interações entre famílias, empresas, governo e os diferentes setores produtivos da economia mineira.
+
+A lógica da análise parte do princípio de que a instalação de sistemas fotovoltaicos reduz o gasto dos consumidores com energia elétrica. Os recursos economizados deixam de ser destinados ao pagamento da fatura de energia e passam a ser realocados pelos agentes econômicos na forma de consumo, poupança ou investimento, conforme o perfil de quem realizou a instalação do sistema. Essa realocação produz efeitos diretos, indiretos e induzidos sobre a economia, influenciando indicadores como **Produto Interno Bruto (PIB), emprego, salários, arrecadação tributária e nível geral de preços**.
+
+Os choques utilizados no modelo de equilíbrio geral foram construídos a partir da **análise financeira individual dos microgeradores e minigeradores instalados no estado de Minas Gerais**. Para cada instalação, foram consideradas informações relacionadas à **irradiação solar e à tarifa de energia elétrica aplicável à localidade**, permitindo calcular o **Valor Anual Uniforme (VAU)** associado a cada sistema. Posteriormente, esses valores foram agregados para cada microrregião do estado e utilizados na construção dos choques aplicados ao modelo.
+
+Os choques foram estruturados em três níveis: **(i)** realocação dos recursos economizados com energia elétrica por pessoas físicas e jurídicas; **(ii)** investimentos realizados na etapa de instalação dos sistemas de geração distribuída; e **(iii)** redução da receita das distribuidoras de energia elétrica que atuam no estado. A incorporação conjunta desses efeitos permite representar de maneira mais abrangente as diferentes formas pelas quais a expansão da geração distribuída se propaga pela economia mineira.
+
+#### CENÁRIOS ANALISADOS
+
+A aplicação apresenta os resultados de dois cenários: **Real** e **Hipotético**. O **Cenário Real** considera as alterações regulatórias efetivamente ocorridas ao longo do período analisado, incluindo os efeitos decorrentes da promulgação da **Lei nº 14.300/2022**.
+
+O **Cenário Hipotético** representa uma situação contrafactual de **não alteração regulatória**, isto é, considera a hipótese de que a Lei nº 14.300/2022 não tivesse sido promulgada e que, portanto, a regulação da geração distribuída permanecesse regida pela **Resolução Normativa ANEEL nº 687/2015**. A comparação entre os dois cenários permite analisar como as alterações regulatórias influenciaram os impactos econômicos associados à geração distribuída no estado.
+
+#### DISTRIBUIÇÃO REGIONAL DOS IMPACTOS
+
+Os impactos econômicos da geração distribuída não ocorrem de maneira homogênea em todo o território mineiro. Diferenças na estrutura produtiva, no perfil dos agentes econômicos e nas características de cada região fazem com que os efeitos apresentem intensidades distintas entre as microrregiões do estado.
+
+Por esse motivo, o projeto desenvolveu um conjunto de **mapas econômicos da geração distribuída**, permitindo identificar a distribuição espacial dos impactos. A análise regional possibilita compreender não apenas o efeito agregado da geração distribuída sobre a economia de Minas Gerais, mas também como esses impactos se distribuem territorialmente, oferecendo informações para pesquisadores, gestores públicos, agentes do setor energético e demais interessados.
+
+#### GD IMPACTA MG
+
+Como um dos produtos do projeto, foi desenvolvida a aplicação web **GD Impacta MG**, destinada à divulgação e exploração interativa dos resultados da pesquisa. A plataforma reúne indicadores econômicos agregados e regionais, mapas e resultados setoriais, permitindo analisar os efeitos acumulados da expansão da geração distribuída em Minas Gerais e comparar os cenários **Real** e **Hipotético**.
+
+A aplicação busca ampliar o acesso aos resultados da pesquisa e contribuir para a disseminação do conhecimento científico, oferecendo informações que possam subsidiar **pesquisas, planejamento energético, decisões de investimento e formulação de políticas públicas relacionadas à geração distribuída e ao desenvolvimento econômico regional**.
+
+</div>
