@@ -114,6 +114,26 @@ investimento_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx
 investimento_micro <- micro_mg %>% 
   dplyr::full_join(investimento_micro, by = c('name_micro' = 'micro'))
 
+icms_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+                                sheet = 'ICMS - Micro') %>% 
+  tidyr::pivot_longer(cols = -c(cenario,variavel),
+                      names_to = 'micro',
+                      values_to = 'valor') %>% 
+  dplyr::full_join(tradutor, by = c('micro' = 'resultado')) %>% 
+  dplyr::mutate(micro = geobr) %>% 
+  dplyr::select(-geobr)  %>% 
+  dplyr::mutate(ref = dplyr::case_when(
+    variavel == 'Agropecuária' ~ 1,
+    variavel == 'Indústria' ~ 2,
+    variavel == 'Serviço' ~ 3,
+    variavel == 'Extrativa' ~ 4,
+    variavel == 'Comércio' ~ 5,
+    variavel == 'Transporte' ~ 6)) %>% 
+  dplyr::arrange(cenario) 
+
+icms_micro <- micro_mg %>% 
+  dplyr::full_join(icms_micro, by = c('name_micro' = 'micro'))
+
 azul <- '#1F5A7A'
 verde <- '#00B5A1'
 
@@ -241,157 +261,147 @@ nav_menu(
       )
     ),
     
-    nav_panel(
-      title = "Licença de uso",
-      
-      layout_sidebar(
-        sidebar = sidebar(
-          title = "Licença",
-          
-          p(
-            "Informações sobre a utilização, reprodução e citação",
-            "dos resultados apresentados."
-          )
-        ),
-        
-        card(
-          card_header("Condições de utilização"),
-          
-          card_body(
-            p(
-              "Insira nesta seção a licença adotada, a forma correta",
-              "de citação da pesquisa e as condições de uso dos dados."
-            )
-          )
-        )
-      )
-    )
-  ),
+nav_panel(
+title = "Licença de uso",
+card(
+  card_header("Condições de utilização"),
   
-# ANÁLISE FINANCEIRA ----------------------------------------------------
-nav_menu(
-  title = "Análise financeira",
-  
-  nav_panel(
-    title = "Mapas financeiros",
-    
-    layout_sidebar(
-      sidebar = sidebar(
-        title = "Filtros",
-        
-        selectInput(
-          inputId = "cenario_financeiro",
-          label = "Cenário",
-          choices = c(
-            "Cenário real",
-            "Cenário hipotético",
-            "Comparação"
-          )
-        ),
-        
-        selectInput(
-          inputId = "indicador_financeiro",
-          label = "Indicador financeiro",
-          choices = c(
-            "Valor presente líquido",
-            "Taxa interna de retorno",
-            "Payback",
-            "Custo nivelado de energia"
-          )
-        )
-      ),
-      
-      card(
-        full_screen = TRUE,
-        
-        card_header("Distribuição espacial dos resultados financeiros"),
-        
-        card_body(
-          plotOutput(
-            outputId = "mapa_financeiro",
-            height = "650px"
-          )
-        )
-      )
-    )
-  ),
-  
-  nav_panel(
-    title = "Calculadora financeira",
-    
-    layout_sidebar(
-      sidebar = sidebar(
-        title = "Parâmetros",
-        
-        numericInput(
-          inputId = "investimento_inicial",
-          label = "Investimento inicial",
-          value = 100000,
-          min = 0
-        ),
-        
-        numericInput(
-          inputId = "economia_anual",
-          label = "Economia anual estimada",
-          value = 15000,
-          min = 0
-        ),
-        
-        numericInput(
-          inputId = "taxa_desconto",
-          label = "Taxa de desconto (%)",
-          value = 10,
-          min = 0
-        ),
-        
-        numericInput(
-          inputId = "vida_util",
-          label = "Vida útil do projeto",
-          value = 25,
-          min = 1
-        ),
-        
-        actionButton(
-          inputId = "calcular",
-          label = "Calcular",
-          class = "btn-primary"
-        )
-      ),
-      
-      layout_column_wrap(
-        width = 1 / 3,
-        
-        value_box(
-          title = "Valor presente líquido",
-          value = textOutput("valor_vpl")
-        ),
-        
-        value_box(
-          title = "Taxa interna de retorno",
-          value = textOutput("valor_tir")
-        ),
-        
-        value_box(
-          title = "Payback",
-          value = textOutput("valor_payback")
-        )
-      ),
-      
-      card(
-        full_screen = TRUE,
-        
-        card_header("Fluxo de caixa do projeto"),
-        
-        card_body(
-          plotOutput(
-            outputId = "grafico_fluxo_caixa",
-            height = "500px"
-          )
-        )
-      )
+  card_body(
+    p(
+      "Insira nesta seção a licença adotada, a forma correta",
+      "de citação da pesquisa e as condições de uso dos dados."
     )
   )
+)
+
+)
+
 ),
+
+# ANÁLISE FINANCEIRA ----------------------------------------------------
+# nav_menu(
+#   title = "Análise financeira",
+#   
+#   nav_panel(
+#     title = "Mapas financeiros",
+#     
+#     layout_sidebar(
+#       sidebar = sidebar(
+#         title = "Filtros",
+#         
+#         selectInput(
+#           inputId = "cenario_financeiro",
+#           label = "Cenário",
+#           choices = c(
+#             "Cenário real",
+#             "Cenário hipotético",
+#             "Comparação"
+#           )
+#         ),
+#         
+#         selectInput(
+#           inputId = "indicador_financeiro",
+#           label = "Indicador financeiro",
+#           choices = c(
+#             "Valor presente líquido",
+#             "Taxa interna de retorno",
+#             "Payback",
+#             "Custo nivelado de energia"
+#           )
+#         )
+#       ),
+#       
+#       card(
+#         full_screen = TRUE,
+#         
+#         card_header("Distribuição espacial dos resultados financeiros"),
+#         
+#         card_body(
+#           plotOutput(
+#             outputId = "mapa_financeiro",
+#             height = "650px"
+#           )
+#         )
+#       )
+#     )
+#   ),
+#   
+#   nav_panel(
+#     title = "Calculadora financeira",
+#     
+#     layout_sidebar(
+#       sidebar = sidebar(
+#         title = "Parâmetros",
+#         
+#         numericInput(
+#           inputId = "investimento_inicial",
+#           label = "Investimento inicial",
+#           value = 100000,
+#           min = 0
+#         ),
+#         
+#         numericInput(
+#           inputId = "economia_anual",
+#           label = "Economia anual estimada",
+#           value = 15000,
+#           min = 0
+#         ),
+#         
+#         numericInput(
+#           inputId = "taxa_desconto",
+#           label = "Taxa de desconto (%)",
+#           value = 10,
+#           min = 0
+#         ),
+#         
+#         numericInput(
+#           inputId = "vida_util",
+#           label = "Vida útil do projeto",
+#           value = 25,
+#           min = 1
+#         ),
+#         
+#         actionButton(
+#           inputId = "calcular",
+#           label = "Calcular",
+#           class = "btn-primary"
+#         )
+#       ),
+#       
+#       layout_column_wrap(
+#         width = 1 / 3,
+#         
+#         value_box(
+#           title = "Valor presente líquido",
+#           value = textOutput("valor_vpl")
+#         ),
+#         
+#         value_box(
+#           title = "Taxa interna de retorno",
+#           value = textOutput("valor_tir")
+#         ),
+#         
+#         value_box(
+#           title = "Payback",
+#           value = textOutput("valor_payback")
+#         )
+#       ),
+#       
+#       card(
+#         full_screen = TRUE,
+#         
+#         card_header("Fluxo de caixa do projeto"),
+#         
+#         card_body(
+#           plotOutput(
+#             outputId = "grafico_fluxo_caixa",
+#             height = "500px"
+#           )
+#         )
+#       )
+#     )
+#   )
+# ),
 
 # RESULTADOS ECONÔMICOS -------------------------------------------------
 nav_menu(
@@ -431,19 +441,17 @@ card(
 )
 ),
 
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
 nav_panel(
   title = 'Distribuição Espacial',
   
 layout_sidebar(
 sidebar = sidebar(
-  title = 'Filtros',
+  title = 'FILTROS',
+  
+  h6(
+    'Distribuição Espacial',
+    class = 'mt-2 mb-3'
+  ),
   
   selectInput(
     inputId = 'cenario_microrregiao',
@@ -480,6 +488,13 @@ sidebar = sidebar(
       'Comércio',
       'Transporte'
     )
+  ),
+  
+  tags$hr(),
+  
+  h6(
+    'Resultado da Microrregião',
+    class = 'mt-2 mb-3'
   ),
   
   selectInput(
@@ -596,13 +611,6 @@ card(
 
 )
 ),
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
 )
 )
 
@@ -736,14 +744,14 @@ output$graf31_4 <- renderPlotly({
                                    valor,
                                    big.mark = '.',
                                    decimal.mark = ',',
-                                   prefix = 'R$',
+                                   prefix = 'R$ ',
                                    accuracy = 1), ' Milhões',
                                  '<br>Cenário: ', cenario)),
                position = 'dodge',
                width = 0.7) +
       scale_x_continuous(labels = scales::dollar_format(big.mark = '.',
                                                         decimal.mark = ',',
-                                                        prefix = 'R$')) +
+                                                        prefix = 'R$ ')) +
       scale_fill_manual(values = c('Hipotético' = verde, 'Real' = azul)) +
       labs(title = 'Arrecadação de ICMS Setorial (Em Milhões)',
            x = '',
@@ -867,7 +875,8 @@ output$graf32_1 <- renderPlotly({
             axis.text=element_blank(),
             axis.ticks=element_blank(),
             panel.grid = element_blank()),
-    tooltip = 'text') 
+    tooltip = 'text') %>%
+    plotly::style(hoveron = 'fills') 
 })
 
 output$graf32_2 <- renderPlotly({
@@ -897,7 +906,8 @@ output$graf32_2 <- renderPlotly({
             axis.text=element_blank(),
             axis.ticks=element_blank(),
             panel.grid = element_blank()),
-    tooltip = 'text') 
+    tooltip = 'text') %>%
+    plotly::style(hoveron = 'fills')
 })
 
 output$graf32_3 <- renderPlotly({
@@ -927,7 +937,43 @@ output$graf32_3 <- renderPlotly({
             axis.text=element_blank(),
             axis.ticks=element_blank(),
             panel.grid = element_blank()),
-    tooltip = 'text') 
+    tooltip = 'text') %>%
+    plotly::style(hoveron = 'fills')
+})
+
+output$graf32_4 <- renderPlotly({
+  plotly::ggplotly(
+    icms_micro %>%
+      dplyr::filter(cenario == input$cenario_microrregiao & 
+                      variavel == input$setor_microrregiao) %>% 
+      ggplot() +
+      geom_sf(aes(fill = valor/1000000, 
+                  text = paste0(
+                    '<br>Microrregião: ', name_micro,
+                    '<br>Variação: ', scales::dollar(valor/1000000,
+                                                     decimal.mark = ',',
+                                                     big.mark = '.',
+                                                     accuracy = 0.01,
+                                                     prefix = 'R$ '), 
+                    ' Milhões')),
+              color = azul) + 
+      scale_fill_gradient(low = "#E8F0F4", 
+                          high = ifelse(input$cenario_microrregiao == 'Real',
+                                        azul,
+                                        verde),
+                          labels = scales::label_number(accuracy = 1,
+                                                        decimal.mark = ',',
+                                                        big.mark = '.')) +
+      labs(title = 'Arrecadação Setorial (Em Milhões de R$)',
+           fill = 'R$') + 
+      theme_minimal() +
+      theme(legend.position = 'bottom',
+            axis.title=element_blank(),
+            axis.text=element_blank(),
+            axis.ticks=element_blank(),
+            panel.grid = element_blank()),
+    tooltip = 'text') %>%
+    plotly::style(hoveron = 'fills')
 })
 
 output$graf32_5 <- renderPlotly({
