@@ -7,7 +7,7 @@ library(plotly)
 library(sf)
 
 # IMPORTAÇÃO: -------------------------------------------------------------
-agregados <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
+agregados <- readxl::read_xlsx(path = 'macro_final.xlsx',
                                sheet = 'Agregados Macroeconômicos') %>% 
   tidyr::pivot_longer(cols = c(mg, resto),
                       names_to = 'local',
@@ -23,7 +23,7 @@ agregados <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
     variavel == 'Índice de Preços' ~ 8)) %>% 
   dplyr::arrange(local, cenario) 
 
-producao_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
+producao_setorial <- readxl::read_xlsx(path = 'macro_final.xlsx',
                                        sheet = 'Produção Setorial') %>% 
   dplyr::rename('valor' = mg) %>% 
   dplyr::mutate(ref = dplyr::case_when(
@@ -35,7 +35,7 @@ producao_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
     variavel == 'Transporte' ~ 6)) %>% 
   dplyr::arrange(cenario)
 
-icms_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
+icms_setorial <- readxl::read_xlsx(path = 'macro_final.xlsx',
                                    sheet = 'ICMS Setorial') %>% 
   dplyr::rename('valor' = mg) %>% 
   dplyr::mutate(ref = dplyr::case_when(
@@ -47,12 +47,12 @@ icms_setorial <- readxl::read_xlsx(path = './dados/macro_final.xlsx',
     variavel == 'Transporte' ~ 6)) %>% 
   dplyr::arrange(cenario)
 
-tradutor <- readxl::read_xlsx(path = './dados/tradutor_gempack.xlsx',
+tradutor <- readxl::read_xlsx(path = 'tradutor_gempack.xlsx',
                               sheet = 'final')
 
-micro_mg <- readRDS(file = './dados/geobr.rds')
+micro_mg <- readRDS(file = 'geobr.rds')
 
-agregados_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+agregados_micro <- readxl::read_xlsx(path = 'microrregioes_final.xlsx',
                                      sheet = 'Agregados - Micro') %>% 
   tidyr::pivot_longer(cols = -c(cenario,variavel),
                       names_to = 'micro',
@@ -74,7 +74,7 @@ agregados_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
 agregados_micro <- micro_mg %>% 
     dplyr::left_join(agregados_micro, by = c('name_micro' = 'micro'))
 
-producao_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+producao_micro <- readxl::read_xlsx(path = 'microrregioes_final.xlsx',
                                     sheet = 'Produção - Micro') %>% 
   tidyr::pivot_longer(cols = -c(cenario,variavel),
                       names_to = 'micro',
@@ -94,7 +94,7 @@ producao_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
 producao_micro <- micro_mg %>% 
   dplyr::full_join(producao_micro, by = c('name_micro' = 'micro'))
 
-investimento_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+investimento_micro <- readxl::read_xlsx(path = 'microrregioes_final.xlsx',
                                         sheet = 'Investimento - Micro') %>% 
   tidyr::pivot_longer(cols = -c(cenario,variavel),
                       names_to = 'micro',
@@ -114,7 +114,7 @@ investimento_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx
 investimento_micro <- micro_mg %>% 
   dplyr::full_join(investimento_micro, by = c('name_micro' = 'micro'))
 
-icms_micro <- readxl::read_xlsx(path = './dados/microrregioes_final.xlsx',
+icms_micro <- readxl::read_xlsx(path = 'microrregioes_final.xlsx',
                                 sheet = 'ICMS - Micro') %>% 
   tidyr::pivot_longer(cols = -c(cenario,variavel),
                       names_to = 'micro',
@@ -215,65 +215,30 @@ nav_menu(
     )
   ),
   
-  nav_panel(
-    title = "Pesquisadores",
-    
-    layout_sidebar(
-      sidebar = sidebar(
-        title = "Equipe",
-        
-        p(
-          "Conheça os pesquisadores e as instituições envolvidas",
-          "no desenvolvimento do projeto."
-        )
-      ),
-      
-      layout_column_wrap(
-        width = 1 / 3,
-        
-        card(
-          card_header("Pesquisador 1"),
-          card_body(
-            h5("Nome do pesquisador"),
-            p("Instituição"),
-            p("Área de atuação")
-          )
-          ),
-          
-          card(
-            card_header("Pesquisador 2"),
-            card_body(
-              h5("Nome do pesquisador"),
-              p("Instituição"),
-              p("Área de atuação")
-            )
-          ),
-          
-          card(
-            card_header("Pesquisador 3"),
-            card_body(
-              h5("Nome do pesquisador"),
-              p("Instituição"),
-              p("Área de atuação")
-            )
-          )
-        )
-      )
-    ),
-    
 nav_panel(
-title = "Licença de uso",
+title = 'Pesquisadores',
 card(
-  card_header("Condições de utilização"),
-  
+  fill = FALSE,
+  card_header('EQUIPE DO PROJETO',
+              style = "background-color: #1F5A7A; color: white;"),
   card_body(
-    p(
-      "Insira nesta seção a licença adotada, a forma correta",
-      "de citação da pesquisa e as condições de uso dos dados."
-    )
+    fillable = FALSE,
+    shiny::includeHTML("guia_info_equipe.html")
   )
 )
+),
 
+nav_panel(
+title = 'Licença de Uso',
+card(
+  fill = FALSE,
+  card_header('LICENÇA DE USO',
+              style = "background-color: #1F5A7A; color: white;"),
+  card_body(
+    fillable = FALSE,
+    shiny::includeHTML("guia_info_licenca.html")
+  )
+)
 )
 
 ),

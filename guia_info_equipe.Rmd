@@ -1,0 +1,122 @@
+---
+title: ""
+output:
+  html_document:
+    self_contained: true
+    theme: null
+date: ""
+---
+
+<div style="text-align: justify">
+
+#### Victor Valerio
+
+**Pesquisador - UNIFEI**
+
+Victor Eduardo de Mello Valerio é doutor e mestre em Engenharia de Produção pela Universidade Federal de Itajubá (UNIFEI) e graduado em Ciências Econômicas pela Universidade Estadual Paulista Júlio de Mesquita Filho (UNESP). Atualmente é professor adjunto da UNIFEI, presidente da Comissão de Energia Fotovoltaica da instituição, integrante do Núcleo de Excelência em Sistemas Fotovoltaicos (NES-FV) e pesquisador do Centro de Hidrogênio Verde (CH2V-UNIFEI). É coordenador da Rede de Análise em Energia Renovável e Desenvolvimento Econômico (RAERDE), composta por pesquisadores da UNIFEI, UFLA, UFJF e UFMG, vinculada ao projeto “Impactos Econômicos da Geração Solar Fotovoltaica Distribuída no Estado de Minas Gerais: Uma Abordagem de Modelagem Inter-Regional de Equilíbrio Geral Computável” (FAPEMIG - RED-00161-22), que resultou em um acordo de cooperação técnica entre a UNIFEI e a Secretaria de Estado de Desenvolvimento Econômico de Minas Gerais (SEDE-MG), sob sua coordenação. Também integra o Centro de Excelência em Tecnologias para Transição Energética (CETTE), formado por pesquisadores de seis universidades brasileiras. Sua atuação concentra-se em projetos de energia renovável, geração solar fotovoltaica, transição energética e análise de viabilidade financeira de investimentos e projetos energéticos.
+
+---
+
+#### André Medeiros
+
+**Pesquisador - UNIFEI**
+
+Graduado em Administração pela Universidade Federal de Lavras (UFLA). Mestre em Engenharia de Produção pela Universidade Federal de Itajubá (UNIFEI) e Doutor em Administração pela UFLA. Professor efetivo da UNIFEI, alocado no Instituto de Engenharia de Produção e Gestão (IEPG), ministra disciplinas da área de finanças, das quais se destacam: Engenharia Econômica, Custos, Matemática financeira e Finanças Corporativas. Docente permanente do Mestrado Profissional em Administração (MPA) da UNIFEI, orientando pesquisas relacionadas ao tema Educação Financeira. Coordenador do Curso de Especialização em Educação Financeira (EEF) e do Núcleo de Pesquisa e Desenvolvimento em Educação Financeira (DENARIUS) que, em parceria com empresas públicas e privadas, desenvolve projetos de extensão em Educação Financeira. De 2018 a 2021 ocupou o cargo de Diretor do IEPG da UNIFEI. A partir de 2023, foi eleieto Coordenador do Mestrado Profissional em Administração da UNIFEI.
+
+---
+
+#### Moisés Vassallo
+
+**Pesquisador - UNIFEI**
+
+Moisés Diniz Vassallo é graduado em economia pela FEA-USP de São Paulo, mestre em engenharia de infraestrutura aeronáutica pelo ITA de São José dos Campos e doutor em teoria econômica também pela FEA-USP de São Paulo. Suas áreas de atuação são economia dos transportes, organização industrial, turismo e análise de impactos econômicos. Atualmente é professor adjunto no Instituto de Engenharia de Produção e Gestão da UNIFEI.
+
+---
+
+#### Andreza Hugo
+
+**Pesquisadora - UNIFEI**
+
+Atualmente é Professora Substituta do Instituto de Engenharia de Produção e Gestão (IEPG) da Universidade Federal de Itajubá (UNIFEI). Realizou pós-doutorado no Programa de Pós-Graduação em Engenharia de Produção da Universidade Federal de Itajubá (2025). Doutora (2024) e Mestre (2020) em Engenharia de Produção pela Universidade Federal de Itajubá, na área de Sistemas de Produção e Logística. Graduada em Engenharia de Produção pela Universidade Federal de Ouro Preto (2014) e pós-graduada em Gerenciamento de Projetos pela Pontifícia Universidade Católica de Minas Gerais (2016). Durante a graduação, estudou por um semestre na Universidade de Reutlingen na Alemanha, onde pôde fazer mobilidade acadêmica. Tem experiência no setor industrial de cerâmicas vermelhas e no setor administrativo de construção civil. Suas pesquisas atuais abrangem as áreas de Economia Circular, Economia Circular na Cadeia de Suprimentos de Moda, Gestão de Resíduos do Serviço de Saúde, Gestão de Resíduos, Logística, Tomada de Decisão, Cadeia de Suprimentos Verde, Avaliação de Indicadores de Sustentabilidade.
+
+---
+
+#### Rhayanna Vasconcelos
+
+**Pesquisadora - UNIFEI**
+
+Graduada em Admnistração pela Universidade Federal de Itajubá (2020), especialista em Direito Tributário e Aduaneiro pela Pontifícia Universidade Católica de Minas Gerais , graduanda de Direito pela Unopar Anhanguera Universidade, com previsão de conclusão para junho de 2025, mestranda em Administração - Finanças aplicadas a tomada de decisão pela Universidade Federal de Itajubá.
+
+---
+
+#### Edson Paulo Domingues
+
+**Pesquisador - UFMG**
+
+Professor Titular do Departamento de Ciências Econômicas; Pesquisador do Centro de Desenvolvimento e Planejamento Regional (Cedeplar) da Universidade Federal de Minas Gerais (UFMG). Pesquisador Visitante na Uiversidade de Illinois Urbana-Champaign (EUA) 2021-2022. Participante do Programa de Professor Visitante no Exterior (PVEX) financiado pela Capes, no Conter of Policy Studies da Victoria University (Australia) em 2018-19. Coordenador do NEMEA - Núcleo de Estudos em Modelagem Econômica e Ambiental Aplicada. Ex-Presidente da Associação Brasileira de Estudos Regionais (ABER). Bolsista de Produtividade em Pesquisa nível 2 (CNPq) . Graduado em Economia pela Universidade de São Paulo (1995), mestre em Economia de Empresas pela Fundação Getúlio Vargas - SP (1998) e Doutor em Economia pela Universidade de São Paulo (2002), com Doutorado-sanduíche na Universidade de Illinois Urbana-Champaign (2000-01). Tem experiência na área de Economia Aplicada, com ênfase em modelos de equilíbrio geral computável, atuando principalmente nos seguintes temas: economia regional, economia do meio ambiente, mudanças climáticas, e políticas comerciais e tributárias. Parecerista da Papers in Regional Science, Energy Economics, Energy Policy, Climate Policy, Revista Brasileira de Estudos Regionais e Urbanos, Revista de Economia e Sociologia Rural, Pesquisa e Planejamento Econômico, Nova Economia e Estudos Econômicos.
+
+---
+
+#### Guilherme Salgueiro
+
+**Pesquisador - UFMG**
+
+Possui graduação em Relações Internacionais pela Pontifícia Universidade Católica de Minas Gerais (2020). Mestrado em Economia pela Universidade Federal de Juiz de Fora, e atualmente é Doutorando em Economia pela Universidade Federal de Minas Gerais. Tem experiência na área de Economia, com ênfase em Economia Internacional e Economia Regional e modelos de Equilíbrio Geral Computável.
+
+---
+
+#### Fernando Perobelli
+
+**Pesquisador - UFJF**
+
+Possui graduação em Ciências Econômicas pela Universidade Federal de Juiz de Fora (1992), mestrado em Economia pela Universidade Federal Fluminense (1995) e doutorado em Economia pela Universidade de São Paulo (2004).Professor Titular do Departamento de Economia da Universidade Federal de Juiz de Fora, onde atua na graduação e na pós-graduação, lecionando cursos na área de Economia Regional e Urbana, Insumo-produto e Equilíbrio Geral Computável, onde também é pesquisador do Laboratório de Análises Territoriais e Setoriais (LATES/UFJF), Vice-Diretor da Faculdade de Economia da Universidade Federal de Juiz de Fora (FE/UFJF). Atua como Pesquisador Associado do NEREUS/USP, Membro do Conselho Editorial da Revista Estudos Econômicos - USP (2020 - 2023). e Coeditor da Revista de Estudos Econômicos da USP (2022 - ). Membro do Conselho Diretor da Associação Internacional de Insumo-produto (2018-2020), como membro do Corpo Editorial da Revista Portuguesa de Estudos Regionais (desde 2012), do Corpo Editorial da Revista Brasileira de Estudos Regionais e Urbanos - Revista da ABER (desde 2010) e cumpre mandato como membro do Comitê de Assessoramento da Área de Economia da Conselho Nacional de Pesquisa - CNPq (2017-2020). Membro da Câmara de Assessoramento da FAPEMIG na área de Ciências Sociais Aplicadas (2021- 2023). 5.Membro de Conselho de Associação de Pesquisa Internacionala) Regional Science Association - Membro Permanente do Conselho - Desde 2024 e b) Latin American Regional Science AssociationMembro Permanente do Conselho - Desde 2023. Membro do Incline - Núcleo de Apoio a Pesquisa em Mudanças Climáticas da USP (2011 -) Pesquisador Associado do NEMEA - UFMG (Núcleo de Estudos em Modelagem Econômica e Ambiental). Como consultor tem experiência em projetos internacionais - Banco Interamericano de Desenvolvimento (BID), Banco Africano de Desenvolvimento (BAD), bem como em projetos nacionais - Federação das Indústrias de Minas Gerais (FIEMG), Empresa de Pesquisa Energética (EPE), Superintendência do Desenvolvimento da Amazônia (SUDAM), Centrais Elétricas de Minas Gerais (CEMIG), Centrais Elétricas de Pernambuco (CELPE), Instituto de Pesquisas Econômicas Aplicadas (IPEA), dentre outros. Ocupou o cargo de presidente da Associação Brasileira de Estudos Regionais e Urbanos - ABER (2010- 2012) e Pró-reitor de pós-graduação da Universidade Federal de Juiz de Fora - MG.
+
+---
+
+#### Rafael Souza
+
+**Pesquisador - UFJF**
+
+Possui graduação em Ciências Econômicas e mestrado em Economia Aplicada, ambos pela Universidade Federal de Juiz de Fora. É doutor em Engenharia Elétrica (Métodos de Apoio à Decisão) pela Pontifícia Universidade Católica do Rio de Janeiro. Tem experiência na área de economia, com ênfase em economia aplicada e na área de análise e previsão de séries temporais. Professor Adjunto da Faculdade de Economia da Universidade Federal de Juiz de Fora.
+
+---
+
+#### Admir Betarelli
+
+**Pesquisador - UFJF**
+
+Possui Graduação em Ciências Econômicas pela Universidade Metodista de Piracicaba (2005), Mestrado em Economia Aplicada pela Universidade Federal de Juiz de Fora (2007) e Doutorado em Economia pela Universidade Federal de Minas Gerais (2013), com Doutorado-sanduíche na Universidade de Illinois Urbana-Champaign (2011-2012) e Pós-Doutorado em Economia pela Universidade Federal de Minas Gerais (2014). Atualmente é Professor Associado do Departamento de Economia da Universidade Federal de Juiz de Fora (UFJF), onde atua na graduação e na pós-graduação, lecionando cursos na área de Teoria Econômica, Métodos estatísticos de multivariada e Equilíbrio Geral Computável. Atua como Professor colaborador da Pós-graduação em Desenvolvimento, Planejamento e Território da Universidade Federal de São João Del-Rei, como Pesquisador do Laboratório de Análises Territoriais e Setoriais (LATES/UFJF) e Coeditor geral da Revista Brasileira de Estudos Regionais e Urbanos (2024 - ). Exerceu o cargo de Presidente do comitê científico do ENABER (2021-2022) e Coordenador do Programa de Pós-Graduação em Economia (2021-2024). Possui também experiências como consultor técnico em projetos nacionais e internacionais (Nações Unidas/CEPAL/IPEA, SEF, SAC, CNPq e Fapemig, entre outros órgãos) e como revisor de estudos aplicados em periódicos nacionais e internacionais. Tem experiência na área de Economia com atuação em linhas de pesquisa como Economia dos Transportes e Economia Regional e Urbana, Crescimento e Desenvolvimento Econômico, Economia Brasileira, Comércio Internacional, Estrutura Produtiva Brasileira, Análise Regional e Setorial (transporte, indústria, combustíveis e comunicação), Impactos de Políticas Econômicas, Renda e Tributação. Seus trabalhos caracterizam-se principalmente pelo desenvolvimento e aplicação modelos de insumo-produto, de equilíbrio geral computável e Contabilidade Nacional.
+
+---
+
+#### Weslem Faria
+
+**Pesquisador - UFJF**
+
+Possui graduação em Ciências Econômicas pela Universidade Federal de Juiz de Fora (2006), mestrado em Economia Aplicada pela Universidade Federal de Minas Gerais (2009) e Doutorado em Teoria Econômica pela Universidade de São Paulo (IPE/USP). Tem experiência na área de Economia com atuação em linhas de pesquisa como economia do meio ambiente e dos recursos naturais, desenvolvimento econômico, análise regional e setorial (principalmente agrícola, energia, transporte e comunicação) e comércio internacional. Os principais métodos aplicados nos estudos desenvolvidos são modelos econométricos, modelos de equilíbrio geral computável e modelos de insumo-produto.
+
+---
+
+#### Filipe Vasconcelos
+
+**Pesquisador - UFJF**
+
+Possui graduação em Ciências Econômicas pela Universidade Federal Rural do Rio de Janeiro (2019), mestrado em Economia Regional e Desenvolvimento pela Universidade Federal Rural do Rio de Janeiro (2022) e atual doutorando em Economia na Universidade Federal de Juiz de Fora na qual é pesquisador do Laboratório de Análises Territoriais e Setoriais (LATES/UFJF) atuando sinergicamente nos seguintes temas: Métodos Quantitativos, Projeções Econômicas, Desenvolvimento Regional e Urbano, Meio Ambiente, Economia Internacional, Cadeias Globais de Valor e Política Fiscal.
+
+---
+
+#### Felipe Oliveira
+
+**Pesquisador - UFJF**
+
+Possui graduação em Ciências Econômicas pela Universidade Federal de Juiz de Fora (2022), mestrado em Econominia Aplicada pela PPGE/UFJF(2025). Atualmente, é doutorando em Economia aplicada pela PPGE/UFJF. Participa no projeto de pesquisa intitulado: Impactos Econômicos da Geração Solar Fotovoltaica Distribuída no Estado de Minas Gerais (2023 - atualmente ). Além de ser membro da Rede de Análise em Energia Renovável e Desenvolvimento Econômico (RAERDE) (2023 - atualmente). Tem experiência na área de Economia, com ênfase em Métodos Quantitativos em Economia.
+
+---
+
+#### André Lima
+
+**Pesquisador - UFLA**
+
+Doutor, mestre e graduado em Administração pela Universidade Federal de Lavras (UFLA). É professor da área de Finanças do Departamento de Administração e Economia (DAE/UFLA). Foi professor da carreira docente na Pontifícia Universidade Católica de Minas Gerais (PUC Minas), onde coordenou cursos de pós-graduação (especialização) em Controladoria Financeira e Gestão Estratégica de Finanças. Foi coordenador do curso de Bacharelado em Administração da UFLA no período de 2016 a 2020. Atualmente, é tutor do Programa de Educação Tutorial (PET) do curso de Administração na UFLA. Tem experiência profissional, tendo atuado principalmente na administração financeira, gestão de custos, precificação, avaliação de empresas (valuation) e na elaboração e análise de projetos de investimento. Também tem se dedicado às temáticas de Finanças Pessoais e Comportamentais na docência, em projetos de pesquisa e extensão.
+
+</div>

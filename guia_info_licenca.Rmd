@@ -1,0 +1,54 @@
+---
+title: ""
+output:
+  html_document:
+    self_contained: true
+    theme: null
+date: ""
+---
+
+<div style="text-align: justify">
+
+Esta aplicação web está licenciada sob a licença Creative Commons 
+Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). 
+Esta licença permite que outros utilizem e compartilhem a aplicação com outras 
+pessoas, desde que creditem a autoria, mas não podem alterá-la de nenhuma forma 
+ou usá-la para fins comerciais.
+
+#### Termos da Licença
+
+1. **Atribuição (BY)**: Você deve dar o crédito apropriado, fornecer um link 
+  para a licença e indicar se foram feitas alterações. Você pode fazê-lo de 
+  qualquer forma razoável, mas não de uma forma que sugira que o licenciador 
+  endossa você ou seu uso.
+
+2. **Não Comercial (NC)**: Você não pode usar o material para fins comerciais. 
+  A licença proíbe explicitamente o uso da aplicação para qualquer propósito que 
+  tenha como objetivo obter uma vantagem comercial ou compensação monetária.
+
+3. **Sem Derivações (ND)**: Se você remixar, transformar ou criar a partir do 
+  material, não pode distribuir o material modificado. A licença permite apenas 
+  compartilhar a aplicação original em sua forma inalterada.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, out.width='25%', fig.align='center'}
+knitr::include_graphics(path = 'licenca.png')
+```
+
+Para mais detalhes sobre a licença CC BY-NC-ND, você pode visitar a página 
+oficial da Creative Commons: 
+[Creative Commons BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+Para nos citar, utilize a seguinte expressão: 
+
+- **VALERIO, Victor Eduardo de Mello et al. GD Impacta MG: impactos econômicos da geração distribuída em Minas Gerais. Itajubá: Universidade Federal de Itajubá, 2026. Aplicação web.** 
+
+#### Nota Adicional
+
+Ao utilizar esta aplicação, você concorda em cumprir com os termos da licença 
+mencionada acima. Qualquer violação desses termos poderá resultar em ações legais 
+apropriadas.
+
+Se você tiver dúvidas ou precisar de permissão para usos que não são cobertos 
+pela licença, entre em contato conosco através do **victor.dmv@unifei.edu.br**.
+
